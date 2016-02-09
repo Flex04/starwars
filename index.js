@@ -1,3 +1,10 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+//var app = express();
+//var bodyParser = require('body-parser');
+var lengthData; 
+var indexQuote; 
+
 'use strict';
 
 var quotes = [{
@@ -34,3 +41,47 @@ var quotes = [{
   'author': '- Darth Vader',
   'quote': 'The Force is strong with this one.'
 }];
+
+
+lengthData = quotes.length; 
+
+var randomQuote= function(){
+
+  indexQuote = parseInt(Math.random()*lengthData);
+  console.log("random quote:  " + quotes[indexQuote].quote);
+  //console.log(quotes[indexQuote].author);
+
+/*
+//Display quote
+  ReactDOM.render(
+  React.createElement('<h3>', null, quotes[indexQuote].quote),
+  document.getElementById('ranQuote')
+  );
+
+  //Display quote's character 
+  ReactDOM.render(
+  React.createElement('<h3>', null, quotes[indexQuote].author),
+  document.getElementById('authorQuote')
+  );*/
+}
+
+var quoteAuthor= function(author){
+
+var tabAuth = [];
+var j=0;
+  for (var i = 0; i < quotes.length; i++) 
+  {
+    if(quotes[i].author.search(author)!= -1)
+    {
+      tabAuth[j]=quotes[i].quote;
+      j++
+    } 
+  }
+
+  indexQuote = parseInt(Math.random()*lengthData);
+  console.log(quotes[indexQuote].author+": "+quotes[indexQuote].quote);
+
+ };
+ 
+randomQuote();
+quoteAuthor("Yoda");
