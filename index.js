@@ -49,39 +49,41 @@ var randomQuote= function(){
 
   indexQuote = parseInt(Math.random()*lengthData);
   console.log("random quote:  " + quotes[indexQuote].quote);
-  //console.log(quotes[indexQuote].author);
+  console.log(" by " +quotes[indexQuote].author);
 
-/*
+
 //Display quote
-  ReactDOM.render(
-  React.createElement('<h3>', null, quotes[indexQuote].quote),
-  document.getElementById('ranQuote')
-  );
+/*  ReactDOM.render(
+  React.createElement('<h3>', null, quotes[indexQuote].quote),document.getElementById('randQuote'));
 
   //Display quote's character 
   ReactDOM.render(
-  React.createElement('<h3>', null, quotes[indexQuote].author),
-  document.getElementById('authorQuote')
-  );*/
-}
+  React.createElement('<h3>', null, quotes[indexQuote].author),  document.getElementById('authorQuote'));
+   */
+};
 
 var quoteAuthor= function(author){
-
+var authorTmp;
 var tabAuth = [];
 var j=0;
   for (var i = 0; i < quotes.length; i++) 
   {
     if(quotes[i].author.search(author)!= -1)
     {
+      authorTmp = quotes[i].author;
       tabAuth[j]=quotes[i].quote;
       j++
     } 
   }
 
-  indexQuote = parseInt(Math.random()*lengthData);
-  console.log(quotes[indexQuote].author+": "+quotes[indexQuote].quote);
+
+  var lengthDataAuth = tabAuth.length; 
+   indexQuote = parseInt(Math.random()*lengthDataAuth);
+  console.log(authorTmp+": "+tabAuth[indexQuote]);
 
  };
  
+ //button random
 randomQuote();
-quoteAuthor("Yoda");
+//multiple button author
+quoteAuthor("Dooku");

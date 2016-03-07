@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <script type="text/javascript" src="index.js"></script>
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+
+    <title>Star Wars - Quotes </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+    
+
+</head>
+
+<body>
+      <div class="logo">
+      <img src="star-wars.jpg"/>
+        <br>
+      </div>
+        <a href="#randomQuote"> </a><br/>
+        <a href="#quoteCharacter"></a>
+      </p>
+    </div>
+    <div class="container">
+      <h5 id="randomcontainer">Random star wars character's quote</h5>
+      <button class="button"  id="randQuote">Random quote</button>
+      <h5 id="charactercontainer">Choose the quote of your favorite character</h5>
+    </div>
+    <div class="row" id="authorQuote">
+      <div class="col l12">
+          <p> Choose your character </p>
+      </div>
+      <div class="col l2">
+        <div width="200px" class="card mycard">
+          <div class="card-image">
+          <img  src="characters/obi.jpg"/>
+            <span class="card-title"></span>
+          </div>
+          <div class="card-content">
+            <h5 id="bobi">Obi Wan</h5>
+          </div>
+        </div>
+      </div>
+    <div class="col l2">
+      <div class="card mycard" height="200px">
+        <div class="card-image">
+          <img width="100px" src="characters/yoda.jpg"/>
+        </div>
+        <div class="card-content">
+          <h5 id="byoda">Yoda</br> </h5>
+        </div>
+     </div>
+   </div>
+    <div class="col l2">
+      <div class="card mycard">
+        <div class="card-image">
+          <img src="characters/leia.jpg"/>
+         </div>
+        <div class="card-content">
+          <h5 id="bleia">Princess Leia</h5>
+      </div>
+    </div>
+     </div>  
+      <div class="col l2">
+        <div class="card mycard">
+          <div class="card-image">
+            <img src="characters/darthvador.jpg"/>
+            </div>
+            <h5 id="bvador">Darth Vader</h5>
+         </div>
+        </div>
+        <div class="col l2">
+  <div class="card mycard">
+    <div class="card-image">
+      <img src="characters/comtedooku.jpg"/>
+    </div>
+    <div class="card-content">
+      <h5 id="bdooku">Count Dooku</h5>
+      </div>
+    </div>
+  </div>
+    
+  <div class="col l2">
+    <div class="card mycard">
+      <div class="card-image">
+        <img src="characters/palpatine.jpg"/>
+      </div>
+      <div class="card-content">
+        <h5 id="bpalpatine">Senator Palpatine</h5>
+        </div>
+    </div>
+  </div>
+              
+
+  </div>
+  </div>
+</body>
+</html>
+
+<script type="text/babel">
+
+    'use strict';
+
+lengthData = quotes.length; 
+
+var randomQuote= function(){
+
+  indexQuote = parseInt(Math.random()*lengthData);
+  //console.log("random quote:  " + quotes[indexQuote].quote);
+  //console.log(" by " +quotes[indexQuote].author);
+
+//Display quote
+  ReactDOM.render(
+  React.createElement('<h3>', null, quotes[indexQuote].quote),document.getElementById('randQuote'));
+
+  //Display quote's character 
+  ReactDOM.render(
+  React.createElement('<h3>', null, quotes[indexQuote].author),  document.getElementById('authorQuote'));
+
+};
+
+var quoteAuthor= function(author){
+var authorTmp;
+var tabAuth = [];
+var j=0;
+  for (var i = 0; i < quotes.length; i++) 
+  {
+    if(quotes[i].author.search(author)!= -1)
+    {
+      authorTmp = quotes[i].author;
+      tabAuth[j]=quotes[i].quote;
+      j++
+    } 
+  }
+
+
+  var lengthDataAuth = tabAuth.length; 
+   indexQuote = parseInt(Math.random()*lengthDataAuth);
+  console.log(authorTmp+": "+tabAuth[indexQuote]);
+
+ };
+
+ var Buttrandom = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { randomquote(); },
+      render: function() { return (<p onClick={this.handleClick}>Random quote</p>);}});
+    
+    var Buttobi = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { authorQuote("Obi-Wan-Kenobi"); },
+      render: function() { return (<h5 onClick={this.handleClick}>Obi-Wan</h5>);}});
+    var Buttyoda = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { authorQuote("Yoda"); },
+      render: function() { return (<h5 onClick={this.handleClick}>Yoda</h5>);}});
+   
+    var Buttleia = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { authorQuote("Princess leila"); },
+      render: function() { return (<h5 onClick={this.handleClick}>Princess Leia</h5>);}});
+     var Buttvador = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { authorQuote("Darth Vader"); },
+      render: function() { return (<h5 onClick={this.handleClick}>Darth Vader</h5>);}});
+   
+   var Buttdooku = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { authorQuote("Count Dooku"); },
+      render: function() { return (<h5 onClick={this.handleClick}>Count Dooku</h5>);}});
+    var Buttpalpatine = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { authorQuote("Senator palpatine"); },
+      render: function() { return (<h5 onClick={this.handleClick}>Palpatine</h5>);}});
+    
+
+      ReactDOM.render(<Buttrandom />, document.getElementById('brand')); 
+      ReactDOM.render(<Buttobi />, document.getElementById('bobi'));
+      ReactDOM.render(<Buttyoda />, document.getElementById('byoda'));
+      ReactDOM.render(<Buttleia />, document.getElementById('bleila'));
+      ReactDOM.render(<Buttvador />, document.getElementById('bvador'));
+      ReactDOM.render(<Buttdooku />, document.getElementById('bdooku'));
+      ReactDOM.render(<Buttpalpatine />, document.getElementById('bpalpatine'));
+
+var quotes = [{
+  'author': '- Yoda',
+  'quote': 'When 900 years old, you reach… Look as good, you will not.'
+}, {
+  'author': '- Senator palpatine',
+  'quote': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.'
+}, {
+  'author': '- Count Dooku',
+  'quote': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.'
+}, {
+  'author': '- Darth vader',
+  'quote': 'Luke, you can destroy the Emperor. He has foreseen this. It is your destiny. Join me, and together we can rule the galaxy as father and son.'
+}, {
+  'author': '- Princess leila',
+  'quote': 'Aren\'t you a little short for a storm trooper?'
+}, {
+  'author': '- Yoda',
+  'quote': 'Mmm. Lost a planet, Master Obi-Wan has. How embarrassing.'
+}, {
+  'author': '- Qui-Gon Jinn',
+  'quote': 'Your focus determines your reality'
+}, {
+  'author': '- Yoda',
+  'quote': 'Do. Or do not. There is no try.'
+}, {
+  'author': '- Obi-Wan-Kenobi',
+  'quote': 'In my experience there is no such thing as luck.'
+}, {
+  'author': '- Yoda',
+  'quote': 'If once you start down the dark side, forever will it dominate your destiney, consume you it will, as it did Obi-Wan\'s apprentice'
+}, {
+  'author': '- Darth Vader',
+  'quote': 'The Force is strong with this one.'
+}];
+<!-- 
+
+/*function getrandquote()
+    {
+      var randq = Math.floor((Math.random() * quotes.length));
+      ReactDOM.render(<h3>{quotes[randq].quote}</h3>, document.getElementById('randomcontainer'));
+      ReactDOM.render(<h3>{quotes[randq].author}</h3>, document.getElementById('charactercontainer'));
+    }
+    function authorQuote(ahor)
+    {
+      var newquotes = [];
+      for(var i =0;i<quotes.length;i++)
+      {
+        if(quotes[i].author == author)
+        {
+          newquotes.push(quotes[i]);
+        }
+      }
+      if(newquotes.length > 0)
+      {
+        var randq = Math.floor((Math.random() * newquotes.length));
+        ReactDOM.render(<h3>{newquotes[randq].quote}</h3>, document.getElementById('randomcontainer'));
+        ReactDOM.render(<h3>{newquotes[randq].author}</h3>, document.getElementById('charactercontainer'));
+      }
+    }
+    */
+        </script>
+
+</html> 
